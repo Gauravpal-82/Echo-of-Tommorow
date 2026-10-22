@@ -1,0 +1,1043 @@
+# COMPLETE GAME DEVELOPMENT PROMPT
+# ECHOES OF TOMORROW
+### A Hand-Drawn 2D Adventure Platformer
+
+## 1. YOUR ROLE AND MAIN OBJECTIVE
+
+Act as an experienced 2D game developer, Phaser 3 programmer, gameplay designer, UI/UX designer, and game tester.
+
+Build a complete, functional, attractive, and lightweight 2D platformer titled **Echoes of Tomorrow**.
+
+This must be a genuinely playable game, not just a landing page, mockup, or visual demonstration.
+
+I am a beginner and do not want to write code or manually implement gameplay mechanics. You are responsible for creating the project, writing the code, configuring the assets, implementing gameplay, running the game, and fixing errors.
+
+I will provide my own graphics by uploading them into clearly designated folders inside the project. You must create these folders and make the game load my artwork from them.
+
+Do not spend time generating final artwork. Focus on building the game and making it easy for me to replace placeholder graphics with my own illustrations.
+
+**Most important priorities:**
+1. A working game with reliable movement and collisions.
+2. Exactly two complete, playable levels.
+3. Beautiful hand-drawn illustrated graphics rather than pixel art.
+4. Dedicated asset folders with clear filenames and specifications.
+5. Simple code that Replit can realistically implement, run, and debug.
+6. Keyboard and mobile controls.
+7. A complete beginning-to-ending gameplay experience.
+
+Do not add complicated features merely to make the project appear more advanced.
+
+---
+
+## 2. TECHNOLOGY AND PROJECT REQUIREMENTS
+
+Use the following technology:
+
+- JavaScript for all game logic.
+- Phaser 3 as the 2D game engine.
+- Vite as the development server and build tool.
+- HTML5 and CSS3 for the surrounding interface.
+- LocalStorage for saving progress and settings.
+
+Use JavaScript instead of TypeScript.
+
+Do not add a backend, database, login system, paid API, multiplayer, or unnecessary dependencies.
+
+The game must run in Replit's supported preview environment.
+
+Create a working package.json with the correct scripts, including:
+- npm run dev
+- npm run build
+- npm run preview
+
+Make sure the game starts correctly using the development command supported by the Replit environment.
+
+Use a sensible resolution-independent game layout. Maintain consistent gameplay physics regardless of screen size.
+
+Keep the architecture simple and modular. Do not create dozens of unnecessary files or complicated abstractions.
+
+---
+
+## 3. GAME IDENTITY AND STORY
+
+Game title: Echoes of Tomorrow
+
+Genre: 2D side-scrolling adventure platformer.
+
+Visual style: Hand-drawn, illustrated, atmospheric adventure.
+
+The game follows a young explorer travelling through two mysterious environments to discover the source of strange signals from an abandoned world.
+
+The explorer must cross dangerous terrain, collect energy fragments, avoid hostile creatures, activate a checkpoint, and reach the final destination.
+
+Keep the story short and atmospheric. Use a few lines of introductory text rather than lengthy cutscenes.
+
+The game should feel like a small, polished indie adventure.
+
+Do not add dialogue trees, complex inventory systems, crafting, quests, skill trees, or other systems that are unnecessary for this version.
+
+---
+
+## 4. ART DIRECTION
+
+The game must use a consistent hand-drawn 2D illustration style.
+
+Do not use:
+- Pixel art.
+- 8-bit or 16-bit retro graphics.
+- Blocky pixelated characters.
+- Random unrelated stock images.
+- A mixture of inconsistent art styles.
+- Automatically generated substitute artwork as the final art.
+
+The intended visual style includes:
+- Hand-drawn character illustrations.
+- Organic platform shapes.
+- Clean outlines.
+- Soft, natural shading.
+- Atmospheric environments.
+- Layered backgrounds.
+- Muted natural colors with restrained futuristic accents.
+- Subtle lighting and environmental effects.
+
+The visual identity should combine a mysterious natural world with subtle futuristic elements.
+
+I will provide the final illustrations. You must integrate them accurately.
+
+Until I upload the artwork, use simple, clearly documented temporary placeholders that allow the entire game to remain playable.
+
+Make placeholders easy to replace without modifying gameplay code.
+
+Do not let placeholder graphics become a reason to leave gameplay incomplete.
+
+---
+
+## 5. REQUIRED PROJECT STRUCTURE AND ASSET FOLDERS
+
+Create the following organized structure:
+
+public/
+  assets/
+    player/
+      idle/
+      run/
+      jump/
+      fall/
+      damage/
+      death/
+    backgrounds/
+      level-1/
+      level-2/
+    platforms/
+      level-1/
+      level-2/
+    tiles/
+    enemies/
+      idle/
+      move/
+    collectibles/
+    hazards/
+    environment/
+      level-1/
+      level-2/
+    checkpoints/
+    goals/
+    effects/
+    ui/
+    icons/
+    audio/
+      sfx/
+      music/
+
+src/
+  main.js
+  game.js
+  style.css
+  config/
+    assets.js
+    levels.js
+  scenes/
+    BootScene.js
+    MenuScene.js
+    GameScene.js
+    LevelSelectScene.js
+    GameOverScene.js
+    LevelCompleteScene.js
+    VictoryScene.js
+    CreditsScene.js
+  systems/
+    PlayerController.js
+    SaveManager.js
+    AudioManager.js
+    InputManager.js
+
+index.html
+package.json
+public/manifest.webmanifest
+
+You may simplify or refine the structure if necessary, but retain all designated asset folders.
+
+Do not create empty decorative files just to match the structure. Every file must have a clear purpose.
+
+### Asset management rules
+
+1. Load local graphics from public/assets/.
+2. Maintain one central asset manifest at src/config/assets.js.
+3. Maintain level layouts and object positions separately in src/config/levels.js.
+4. Never scatter hardcoded asset paths throughout gameplay code.
+5. Inspect actual files and image dimensions before assigning animations or sprite sheets.
+6. Never assume that a sprite sheet has a particular number of frames without inspecting it.
+7. Preserve image transparency and aspect ratio.
+8. Avoid stretching images disproportionately.
+9. Keep decorative objects separate from solid collision objects.
+10. Replacing an image at an existing path with a compatible image should not require changes to gameplay logic.
+11. If an asset is missing, display a clear development warning identifying the missing path.
+12. Use a documented placeholder for missing assets so the game remains functional.
+13. Never silently substitute unrelated artwork for my graphics.
+
+Create an ASSET_GUIDE.md file explaining every folder, expected filename, recommended dimensions, supported format, and animation layout.
+
+Also create a visible or easily accessible asset checklist that tells me exactly which graphics I should upload first.
+
+---
+
+## 6. THE TWO LEVELS
+
+Create exactly two playable levels.
+
+Do not create a third level, bonus level, hidden level, or unfinished level-selection entry.
+
+Each level must have a genuinely different layout, obstacles, and environment. Changing only the background is not sufficient.
+
+### LEVEL 1: THE LOST WILDERNESS
+
+Purpose: Introduce the player to the game's mechanics.
+
+Environment:
+- An abandoned natural landscape.
+- Hand-drawn trees, grass, rocks, and distant hills.
+- A mysterious trail leading through the environment.
+- Subtle futuristic ruins or glowing objects.
+- A consistent illustrated color palette.
+
+Gameplay:
+- A safe starting area.
+- Basic horizontal platforms and solid ground.
+- A few small gaps.
+- Simple jumps.
+- Collectible energy fragments.
+- One or two predictable hazards.
+- One basic enemy that patrols a limited area.
+- One checkpoint.
+- A clearly visible finish gate.
+
+The opening section must be easy enough for a beginner to understand without frustration.
+
+Introduce a brief optional tutorial:
+- Move using the left and right controls.
+- Jump over gaps.
+- Collect energy fragments.
+- Avoid dangerous objects.
+- Reach the exit.
+
+The tutorial should disappear after its instructions have been displayed or dismissed.
+
+The player should be able to finish the level in approximately 1–3 minutes.
+
+### LEVEL 2: THE BROKEN FRONTIER
+
+Purpose: Provide a slightly more challenging final adventure.
+
+Environment:
+- An abandoned futuristic ruin or mysterious industrial landscape.
+- Broken structures and elevated platforms.
+- Hand-drawn machinery, rocks, and environmental details.
+- Subtle glowing energy elements.
+- A visual style consistent with Level 1.
+
+Gameplay:
+- More varied platform heights.
+- Wider gaps requiring careful jumps.
+- A few moving or fixed hazards.
+- One or two instances of the same basic enemy type.
+- Collectible energy fragments placed along optional routes.
+- One checkpoint.
+- A final sequence leading to the exit.
+
+Reuse the same enemy logic rather than developing multiple complex enemy types.
+
+The difficulty should increase through platform placement, timing, and obstacle arrangement rather than complicated new mechanics.
+
+The player should be able to finish the level in approximately 2–4 minutes.
+
+After the final goal is reached, show the game's victory screen.
+
+### Level-design requirements
+
+Both levels must have real, complete layouts.
+
+- Design every platform and gap deliberately.
+- Ensure all mandatory jumps are physically possible.
+- Keep collision boundaries aligned with visible platforms.
+- Do not place unavoidable hazards directly in the player's path.
+- Provide enough space to react to enemies.
+- Place checkpoints before particularly difficult sections.
+- Keep the route to the finish understandable.
+- Use a simple side-scrolling camera that follows the player.
+- Prevent the player from escaping the intended playable area.
+
+Do not use randomly generated level layouts. Use fixed, deliberately designed layouts so the gameplay can be tested reliably.
+
+---
+
+## 7. PLAYER MOVEMENT AND PHYSICS
+
+Implement a reliable player controller using Phaser 3 physics.
+
+Required functionality:
+- Move left and right.
+- Smooth acceleration and deceleration where appropriate.
+- Gravity.
+- Jumping.
+- Reliable ground detection.
+- Falling detection.
+- Collision with solid platforms.
+- Damage feedback.
+- Temporary invulnerability after damage.
+- Death and respawning.
+- Checkpoint respawning.
+- Camera tracking.
+
+Use a simple health system with three hearts or three lives.
+
+A single jump input must produce one jump. Prevent infinite jumping, unintended double jumps, and jumping repeatedly while airborne.
+
+Allow a jump only when the player is grounded.
+
+Variable-height jumping is optional. If it makes the controls less reliable, use a simple fixed-height jump.
+
+Use a separate physics body when necessary so transparent image margins do not affect collisions.
+
+The character should never walk through solid platforms or become permanently stuck in terrain.
+
+When the player falls into a pit or loses all health, handle the situation cleanly.
+
+After taking damage, provide brief visual feedback without excessive flashing or screen shake.
+
+### Animation support
+
+Support these states when matching graphics are available:
+- Idle.
+- Running.
+- Jumping.
+- Falling.
+- Taking damage.
+- Death.
+
+If only a static player image is available, display it correctly and keep the game playable.
+
+Do not require every animation asset before the game can start.
+
+---
+
+## 8. CONTROLS
+
+### Desktop keyboard controls
+
+- A or Left Arrow: Move left.
+- D or Right Arrow: Move right.
+- Space, W, or Up Arrow: Jump.
+- Escape or P: Pause or resume.
+- R: Restart the current level when appropriate.
+
+Prevent gameplay keys from accidentally scrolling the webpage.
+
+Release held movement inputs correctly when the browser tab loses focus.
+
+### Mobile touch controls
+
+Create simple on-screen controls:
+- Left arrow.
+- Right arrow.
+- Jump button.
+- Pause button.
+
+Requirements:
+- Holding a movement button moves continuously.
+- Jump activates reliably.
+- Buttons respond to touch and pointer input.
+- Releasing a button stops the corresponding action.
+- Touch and mouse events must not cause duplicate actions.
+- Controls must be large enough to tap comfortably.
+- Position controls near the bottom corners.
+- Avoid covering important hazards or gameplay information.
+- Respect mobile safe areas.
+- Support portrait and landscape screens.
+
+Use Phaser pointer input or another reliable input method.
+
+The game must remain playable on mobile devices. If landscape is preferable, display a small, non-blocking rotation suggestion instead of preventing play.
+
+Test keyboard and touch controls independently.
+
+---
+
+## 9. PLATFORMS AND COLLISION SYSTEM
+
+Implement a simple, reliable platform system.
+
+Support:
+- Solid ground.
+- Static platforms.
+- Elevated ledges.
+- Gaps and pits.
+- Optional moving platforms if straightforward.
+- Decorative background objects.
+- Foreground scenery.
+- Checkpoints.
+- Finish gates.
+
+Use separate visual images and collision bodies.
+
+For example, a platform illustration may contain transparent margins or decorative edges. Its collision body should match the actual walkable surface rather than the full image rectangle.
+
+Keep the physics dimensions and object positions in the level configuration.
+
+If I replace a platform image with a compatible image, the game should continue to work.
+
+Do not make every decorative object solid.
+
+For this version, do not implement complex destructible terrain, terrain deformation, or advanced physics.
+
+Prioritize predictable movement and correct collision detection.
+
+---
+
+## 10. ENEMIES AND HAZARDS
+
+Create one simple enemy type that can be reused in both levels.
+
+Enemy behavior:
+- Patrol horizontally between two defined points.
+- Reverse direction at boundaries.
+- Remain within its assigned platform or patrol area.
+- Collide correctly with the player.
+- Cause damage when touched.
+- Be avoidable by jumping over it.
+
+Do not implement complex artificial intelligence, pathfinding, multiple attack types, boss battles, or complicated combat.
+
+The player does not need a weapon or attack system. The main challenge is movement and avoidance.
+
+### Hazards
+
+Use simple fixed hazards, such as spikes, broken ground, or dangerous obstacles.
+
+Moving hazards are optional and should be added only if the core game works reliably.
+
+Make dangerous areas visually recognizable.
+
+A collision with a hazard should cause predictable damage or a respawn.
+
+Avoid invisible hazards, unfair collisions, and obstacles that cannot be passed with the configured jump height.
+
+If suitable hazard graphics have not been uploaded, use clearly documented development placeholders.
+
+---
+
+## 11. COLLECTIBLES AND SCORING
+
+Create a simple collectible system using energy fragments or glowing orbs.
+
+Each collectible must:
+- Appear at a defined position.
+- Be collected when the player touches it.
+- Increase the collectible counter by one.
+- Disappear after collection.
+- Be impossible to collect repeatedly.
+- Trigger a small visual effect.
+- Play a sound when sound effects are enabled.
+
+Display a simple HUD containing:
+- Current level name.
+- Collected energy fragments.
+- Health or remaining lives.
+- Pause button.
+
+Use a straightforward score system. For example, each fragment may award 100 points.
+
+At the end of each level, display:
+- Number of fragments collected.
+- Level score.
+- Completion status.
+- Continue or replay option.
+
+Do not introduce complicated multipliers, skill ratings, currency stores, or inventory systems.
+
+---
+
+## 12. CHECKPOINTS AND RESPAWNING
+
+Each level must contain one checkpoint.
+
+When the player touches it:
+- Activate it visibly.
+- Save the checkpoint position for the current level session.
+- Display a short confirmation.
+- Play a sound if available.
+
+If the player dies after activating a checkpoint, respawn at that checkpoint.
+
+Reset temporary level objects appropriately after death.
+
+Do not repeatedly restore already-collected objects incorrectly or create duplicate collectibles.
+
+If the player loses all three health points, display the Game Over screen.
+
+Provide:
+- Retry Level.
+- Main Menu.
+
+Restarting the level must reset its temporary gameplay state without erasing permanently saved progress or previously completed levels.
+
+Keep checkpoint behavior simple and test it carefully.
+
+---
+
+## 13. MENUS AND USER INTERFACE
+
+Create a polished, readable interface consistent with the illustrated game.
+
+Use the provided UI graphics if available. Otherwise, use simple HTML/CSS or Phaser UI elements that match the art direction.
+
+### Main menu
+
+Display:
+- Echoes of Tomorrow.
+- A short subtitle: A Hand-Drawn Adventure.
+- Play.
+- Level Selection.
+- How to Play.
+- Settings.
+- Credits.
+
+All buttons must work.
+
+### Level selection
+
+Display exactly two level cards:
+1. The Lost Wilderness.
+2. The Broken Frontier.
+
+Show whether each level is unlocked or completed.
+
+Level 1 is available at the beginning.
+
+Level 2 unlocks when Level 1 is completed.
+
+Do not allow entry into locked levels.
+
+### Pause menu
+
+Include:
+- Resume.
+- Restart Level.
+- Settings.
+- Main Menu.
+
+Pause must actually stop player movement, enemy movement, hazards, timers, and other gameplay updates.
+
+Resuming must restore gameplay correctly.
+
+### Game Over screen
+
+Include:
+- Game Over.
+- Retry Level.
+- Main Menu.
+
+### Level completion screen
+
+Include:
+- Level completed.
+- Fragments collected.
+- Score.
+- Continue.
+- Replay Level.
+- Main Menu.
+
+After completing Level 1, allow the player to continue to Level 2.
+
+### Final victory screen
+
+After completing Level 2, display:
+- Echoes of Tomorrow.
+- Journey Completed.
+- Total fragments collected.
+- Total score.
+- Play Again.
+- Main Menu.
+
+Use a subtle celebration effect if practical.
+
+### Settings screen
+
+Include:
+- Master sound on/off.
+- Sound effects on/off.
+- Clear saved progress with confirmation.
+- Back.
+
+Do not display buttons that do nothing.
+
+Avoid building complicated settings systems or unnecessary animations.
+
+---
+
+## 14. TEAM CREDITS
+
+Create a dedicated Credits screen accessible from the main menu.
+
+Display:
+
+Game: Echoes of Tomorrow
+
+Team: Zeronix
+
+Team Lead:
+Gaurav Pal
+
+Team Members:
+Veer Pratap
+Akhand Pratap
+
+Use a clean layout consistent with the game's visual style.
+
+Make the team lead visually distinguishable from the team members.
+
+Include a working Back button.
+
+Optionally display “Developed by Team Zeronix” on the main menu.
+
+Do not interrupt gameplay with credits.
+
+Ensure that the names remain readable on desktop and mobile screens.
+
+---
+
+## 15. AUDIO SYSTEM
+
+Create a simple centralized audio manager.
+
+Support these sound effects when assets are available:
+- Jump.
+- Collectible pickup.
+- Damage.
+- Checkpoint activation.
+- Level completion.
+- Menu button interaction.
+
+Load audio from public/assets/audio/sfx/ and public/assets/audio/music/.
+
+Use sensible filenames and document them in ASSET_GUIDE.md.
+
+If a sound file is missing, continue without playing that sound. Never let missing audio crash the game.
+
+Respect browser autoplay restrictions and initialize audio after the first appropriate user interaction.
+
+A background music track is optional.
+
+Provide a master mute toggle and a sound-effects toggle.
+
+Do not require audio assets for the game to function.
+
+---
+
+## 16. SAVING PROGRESS
+
+Use LocalStorage to save:
+- Highest unlocked level.
+- Completed levels.
+- Best score for each level.
+- Total fragments collected across completed runs.
+- Audio preferences.
+
+Requirements:
+- Progress persists after a page reload.
+- Completing Level 1 unlocks Level 2.
+- Restarting a level does not erase permanent progression.
+- Clearing progress requires confirmation.
+- Missing or corrupted saved data must be handled safely.
+- The game must remain usable if LocalStorage is unavailable.
+
+Use a small SaveManager module.
+
+Avoid unnecessary save formats or complicated progression systems.
+
+Do not implement user accounts, cloud saves, or online leaderboards.
+
+---
+
+## 17. RESPONSIVE DESIGN AND PERFORMANCE
+
+Optimize the game for:
+- Ordinary desktop computers.
+- Laptops.
+- Android phones.
+- Tablets.
+
+Requirements:
+- Correct canvas scaling.
+- Consistent physics across screen sizes.
+- Touch-friendly controls.
+- Smooth camera tracking.
+- Efficient asset loading.
+- Lightweight effects.
+- No unnecessary memory usage.
+- No accidental page scrolling during gameplay.
+- Correct behavior when a browser tab is hidden or restored.
+
+Use a sensible rendering resolution and frame rate.
+
+Avoid heavy shaders, elaborate particle simulations, large unnecessary libraries, and expensive visual effects.
+
+The game should prioritize responsiveness and stability over graphical complexity.
+
+---
+
+## 18. ASSET GUIDE: EXACT FILES I NEED TO UPLOAD
+
+Create ASSET_GUIDE.md and provide an asset checklist after implementing the initial game.
+
+Use the following filenames as the recommended default names. If a compatible asset has a different filename, register its actual path in the central asset manifest rather than renaming or ignoring it.
+
+### Player graphics
+
+Folder: public/assets/player/
+
+Recommended files:
+- idle/player-idle.png
+- run/player-run.png
+- jump/player-jump.png
+- fall/player-fall.png
+- damage/player-damage.png
+- death/player-death.png
+
+Recommended specifications:
+- PNG with transparent background.
+- Approximately 128 × 128 pixels per animation frame.
+- For sprite sheets, use consistent frame dimensions and clearly document the frame count and layout.
+- A static player image is acceptable for the initial version.
+
+### Level backgrounds
+
+Folder: public/assets/backgrounds/level-1/
+
+Recommended file:
+- wilderness-background.png
+
+Folder: public/assets/backgrounds/level-2/
+
+Recommended file:
+- frontier-background.png
+
+Recommended specifications:
+- PNG or WebP.
+- Approximately 1920 × 1080 pixels or a larger landscape image with the same aspect ratio.
+- Wide enough to support horizontal scrolling, or designed to repeat seamlessly.
+- Separate layers may be supplied for parallax scrolling, but they are optional.
+
+### Platforms and ground
+
+Folder: public/assets/platforms/level-1/
+
+Recommended files:
+- wilderness-ground.png
+- wilderness-platform.png
+
+Folder: public/assets/platforms/level-2/
+
+Recommended files:
+- frontier-ground.png
+- frontier-platform.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 256–512 pixels wide and 64–128 pixels high for individual platform pieces.
+- Consistent edges when tiles need to connect.
+- Clearly identifiable walkable surfaces.
+
+The actual dimensions can differ. The game must preserve the original aspect ratio and configure collision bodies separately.
+
+### Enemy graphics
+
+Folder: public/assets/enemies/idle/
+
+Recommended file:
+- enemy-idle.png
+
+Folder: public/assets/enemies/move/
+
+Recommended file:
+- enemy-move.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 96–128 pixels per frame.
+- A sprite sheet may contain 4–6 consistent frames for movement.
+- One static enemy image is acceptable initially.
+
+### Collectibles
+
+Folder: public/assets/collectibles/
+
+Recommended file:
+- energy-fragment.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 48 × 48 or 64 × 64 pixels.
+- Optional 4–6-frame sprite sheet.
+
+### Hazards
+
+Folder: public/assets/hazards/
+
+Recommended files:
+- spikes.png
+- hazard.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 64–128 pixels wide, depending on the object.
+- Clear visual boundaries so the collision areas can be configured correctly.
+
+### Checkpoint
+
+Folder: public/assets/checkpoints/
+
+Recommended file:
+- checkpoint.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 96 × 128 pixels.
+- A static illustration is sufficient.
+
+### Finish gate
+
+Folder: public/assets/goals/
+
+Recommended file:
+- finish-gate.png
+
+Recommended specifications:
+- Transparent PNG.
+- Approximately 128 × 192 pixels.
+- Must be recognizable as the level exit.
+
+### Environment decorations
+
+Folder: public/assets/environment/level-1/
+
+Suggested files:
+- tree.png
+- rock.png
+- bush.png
+
+Folder: public/assets/environment/level-2/
+
+Suggested files:
+- ruin.png
+- machinery.png
+- broken-pillar.png
+
+Recommended specifications:
+- Transparent PNG.
+- Individual objects are preferable.
+- Decorative objects must not automatically become solid platforms.
+
+These are optional. The game must not depend on every decorative asset.
+
+### User interface and icons
+
+Folder: public/assets/ui/
+
+Suggested files:
+- game-logo.png
+- button-play.png
+- button-pause.png
+- button-resume.png
+- button-restart.png
+- heart.png
+- energy-icon.png
+
+Folder: public/assets/icons/
+
+Suggested file:
+- app-icon.png
+
+Recommended specifications:
+- Transparent PNG for most interface elements.
+- Approximately 64–256 pixels, depending on the element.
+- A square app icon of 512 × 512 pixels is recommended.
+
+### Audio
+
+Folder: public/assets/audio/sfx/
+
+Suggested files:
+- jump.wav
+- collect.wav
+- damage.wav
+- checkpoint.wav
+- level-complete.wav
+- button-click.wav
+
+Folder: public/assets/audio/music/
+
+Optional file:
+- background-music.ogg
+
+Supported formats should be checked against browser compatibility.
+
+### Asset integration rules
+
+- Do not require every suggested asset to start the game.
+- Prioritize player, background, ground/platform, enemy, collectible, hazard, checkpoint, and finish-gate assets.
+- Inspect files before creating animations.
+- If a sprite sheet has an unknown layout, do not guess. Report the expected layout and request clarification in the asset guide.
+- Missing files must produce readable development warnings.
+- Keep placeholders clearly separated from user-provided artwork.
+- Do not silently use a wrong image because its filename matches.
+- When I upload graphics later, explain which files go into which folders.
+- Make replacing artwork as easy as possible for a beginner.
+
+---
+
+## 19. DEVELOPMENT WORKFLOW
+
+Work through these stages in order.
+
+### Stage 1: Project setup
+
+Create the Vite and Phaser project.
+
+Install the necessary dependencies and ensure the initial project starts correctly.
+
+### Stage 2: Asset structure
+
+Create the asset folders, central asset manifest, level configuration, and ASSET_GUIDE.md.
+
+Use placeholders for missing graphics.
+
+### Stage 3: Core gameplay
+
+Implement:
+- Player movement.
+- Jumping and gravity.
+- Ground and platform collisions.
+- Camera tracking.
+- Collectibles.
+- One enemy type.
+- Hazards.
+- Health and respawning.
+- Checkpoints.
+
+Test these systems before adding decorative features.
+
+### Stage 4: Build both levels
+
+Create the complete layouts for The Lost Wilderness and The Broken Frontier.
+
+Verify that every mandatory jump is possible and the player can reach each exit.
+
+### Stage 5: User interface
+
+Implement:
+- Main menu.
+- Level selection.
+- How to Play.
+- Pause.
+- Settings.
+- Credits.
+- Game Over.
+- Level completion.
+- Final victory.
+
+Every button must perform its intended action.
+
+### Stage 6: Progress saving
+
+Implement level unlocking, completion records, best scores, and audio preferences.
+
+### Stage 7: Testing and refinement
+
+Run the actual game in the Replit preview.
+
+Fix console errors, broken buttons, collision problems, invalid asset paths, and failed level transitions.
+
+Test keyboard and mobile controls.
+
+Test both levels from beginning to end.
+
+### Stage 8: Final report
+
+Provide a concise summary of:
+- Features implemented.
+- Tests actually performed.
+- Any known bugs.
+- Missing assets.
+- Remaining limitations.
+- How to run the game.
+- Which graphics I should upload next.
+
+Do not claim that a test passed unless you actually performed it.
+
+Do not stop after creating the project structure or writing an implementation plan. Build the working game.
+
+---
+
+## 20. FINAL ACCEPTANCE CHECKLIST
+
+Before declaring the game complete, verify:
+
+- The game starts in Replit.
+- The main menu works.
+- The game has exactly two levels.
+- Both levels have distinct and complete layouts.
+- The player can move and jump reliably.
+- Keyboard controls work.
+- Mobile touch controls work.
+- Platforms and hazards have appropriate collisions.
+- Collectibles can only be collected once.
+- The enemy patrols correctly.
+- Health, death, and respawning work.
+- Checkpoints work.
+- Level 2 unlocks after Level 1 is completed.
+- Pause and restart work.
+- The final victory screen appears after Level 2.
+- Credits show the correct Team Zeronix information.
+- Audio settings work even when sound assets are missing.
+- Progress is saved when LocalStorage is available.
+- The game responds to different screen sizes.
+- Missing assets do not prevent the game from starting.
+- The production build completes successfully.
+
+If an item cannot be verified, identify it as untested rather than claiming success.
+
+## FINAL INSTRUCTION
+
+Build **Echoes of Tomorrow** as a simple, polished, genuinely playable, hand-drawn 2D adventure platformer with exactly two levels.
+
+Use Phaser 3 and JavaScript. Keep the code maintainable and the gameplay reliable.
+
+Create dedicated asset folders so I can upload my own illustrations for the player, platforms, backgrounds, enemies, collectibles, hazards, and other elements.
+
+Make the game playable before I upload the final artwork.
+
+Prioritize reliable gameplay, proper collision detection, a clear level structure, and easy asset replacement over advanced features.
+
+Do not add unnecessary complexity. Do not generate pixel art. Do not invent additional levels. Do not leave the game as a demo.
+
+**Start building the actual project now.**

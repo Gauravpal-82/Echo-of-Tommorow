@@ -1,0 +1,17 @@
+{
+  "name": "Echoes of Tomorrow",
+  "short_name": "Echoes",
+  "description": "A Hand-Drawn 2D Adventure Platformer by Team Zeronix",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "landscape",
+  "background_color": "#0d1117",
+  "theme_color": "#161b22",
+  "icons": [
+    {
+      "src": "/assets/icons/app-icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

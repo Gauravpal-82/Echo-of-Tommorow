@@ -1,0 +1,6 @@
+{
+  "name": "Echoes of Tomorrow",
+  "description": "A Hand-Drawn 2D Adventure Platformer by Team Zeronix featuring responsive platforming, two distinct levels, checkpoints, and customizable asset pipelines.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
